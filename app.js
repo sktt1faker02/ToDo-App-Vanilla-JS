@@ -61,6 +61,9 @@ const renderMyLists = function () {
   if (!taskList.hasChildNodes()) return;
   taskList.querySelector("li:first-child").classList.add("active-list");
 
+  //   if (Object.keys(todoListData).length === 1)
+  //     todoTitle.textContent = Object.keys(todoListData)[0];
+
   //   getList = taskList.querySelectorAll("li");
   //   console.log(getList);
 };
@@ -123,6 +126,11 @@ createListBtn.addEventListener("click", (e) => {
   //   renderMyLists();
   //   renderTaskList(Object.keys(todoListData)[0]);
   selectingMyList();
+
+  if (Object.keys(todoListData).length === 1) {
+    todoTitle.textContent = Object.keys(todoListData)[0];
+    taskList.querySelector("li:first-child").classList.add("active-list");
+  }
 });
 
 createTodoBtn.addEventListener("click", function (e) {
@@ -144,6 +152,7 @@ const selectingMyList = function () {
     e.addEventListener("click", () => {
       selectedLink();
       e.classList.add("active-list");
+
       // console.log(e.textContent.length, "Workout".length);
 
       todoList.replaceChildren();
@@ -190,12 +199,15 @@ clearTask.addEventListener("click", todoListHelper);
 
 delList.addEventListener("click", () => {
   const category = todoTitle.textContent;
+  if (!category) return;
   delete todoListData[`${category}`];
   console.log(category);
   todoList.replaceChildren();
   taskList.replaceChildren();
   todoTitle.textContent = "";
+
   init();
+  selectingMyList();
 });
 
 selectingMyList();
