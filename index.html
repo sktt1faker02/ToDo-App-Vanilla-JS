@@ -11,7 +11,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="./app.js" defer></script>
+    <!-- <script src="./app.js" defer></script> -->
+    <script src="./solution.js" defer></script>
     <title>ToDo App</title>
   </head>
   <body>
@@ -19,17 +20,18 @@
 
     <div class="all-tasks">
       <h2 class="task-list-title">My lists</h2>
-      <ul class="task-list">
+      <ul class="task-list" data-lists>
         <!-- <li class="list-name active-list">Youtube</li> -->
         <!-- <li class="list-name">Work</li>
         <li class="list-name">Grocery</li> -->
       </ul>
 
-      <form action="">
+      <form action="" data-new-list-form>
         <input
           id="new-list-name"
           type="text"
           class="new list"
+          data-new-list-input
           placeholder="new list name"
           aria-label="new list name"
         />
@@ -43,14 +45,14 @@
       </form>
     </div>
 
-    <div class="todo-list">
+    <div class="todo-list" data-list-display-container>
       <div class="todo-header">
-        <h2 class="list-title">Youtube</h2>
-        <p class="task-count">3 tasks remaining</p>
+        <h2 class="list-title" data-list-title>Youtube</h2>
+        <p class="task-count" data-list-count>3 tasks remaining</p>
       </div>
 
       <div class="todo-body">
-        <div class="tasks">
+        <div class="tasks" data-tasks>
           <!-- <div class="task">
             <input type="checkbox" id="task-1" />
             <label for="task-1"
@@ -78,9 +80,10 @@
         </div>
 
         <div class="new-task-creator">
-          <form action="">
+          <form action="" data-new-task-form>
             <input
               type="text"
+              data-new-task-input
               class="new task"
               id="new-task-name"
               placeholder="new task name"
@@ -96,11 +99,23 @@
           </form>
         </div>
         <div class="delete-stuff">
-          <button id="clear-task" class="btn delete">
+          <button
+            id="clear-task"
+            data-clear-complete-tasks-button
+            class="btn delete"
+          >
             Clear completed tasks</button
-          ><button id="delete-list" class="btn delete">Delete list</button>
+          ><button id="delete-list" data-delete-list-button class="btn delete">
+            Delete list
+          </button>
         </div>
       </div>
     </div>
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label><span class="custom-checkbox"></span></label>
+      </div>
+    </template>
   </body>
 </html>
